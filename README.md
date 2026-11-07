@@ -20,8 +20,6 @@ Admin / Portal 双端 · 统一响应约定 · 可独立演进
 
 > 同一套领域分层与接口约定，用各语言惯用工程形态落地；不是「把 Java 目录硬抄一遍」，而是角色对齐、依赖单向、可按栈单独取用。
 
-仓库：[jiangbyte/light](https://github.com/jiangbyte/light)
-
 ---
 
 ## 目录
