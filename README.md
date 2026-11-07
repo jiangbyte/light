@@ -38,7 +38,7 @@ Admin / Portal 双端 · 统一响应约定 · 可独立演进
 
 - **DDD + 六边形**：`types` / `domain` / `infrastructure` / `apis` / `triggers` / `apps` 角色清晰，依赖单向
 - **Admin / Portal 双入口**：后端可独立部署（默认 `:8081` / `:8080`）；Vue3 对应 `apps/admin` / `apps/portal`
-- **跨栈同构约定**：统一响应 `{ code, message, data }`，JSON `snake_case`，数字尽量按字符串输出，404 返回 JSON
+- **跨栈同构约定**：统一响应 `{ code, message, data }`，JSON `snake_case`，数字一律按字符串输出，404 返回 JSON
 - **占位骨架**：`domain/template`（或等价命名空间）+ 分层说明 + `Xxx*` 命名示例，复制后改名即可开业务
 - **前端请求封装**：Axios 对齐后端成功码 `code === "0000"` 解包 `data`，业务失败抛 `BizError`
 - **多端前端**：`light-vue3`（Web）与 `light-uniapp`（H5 / 微信小程序 / App）
@@ -155,7 +155,7 @@ flowchart TB
 |----|------|
 | 响应体 | `{ code, message, data }` |
 | 业务码 | **四位数字字符串**（见下表） |
-| JSON | 字段 `snake_case`；数字尽量按字符串写出 |
+| JSON | 字段 `snake_case`；数字一律按字符串写出 |
 | 错误页 | 404 / 业务异常统一 JSON，避免框架默认 HTML 页 |
 | 端口 | Admin `:8081`，Portal `:8080` |
 | 前端 | `code === "0000"` → 返回 `data`；否则 `BizError` |

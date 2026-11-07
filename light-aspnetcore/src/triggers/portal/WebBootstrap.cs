@@ -17,7 +17,7 @@ public static class WebBootstrap
 {
     public static WebApplication BuildApp(string[] args, string appName, int port)
     {
-        // 1. 配置 snake_case + 数字按字符串写出
+        // 1. 配置 snake_case + 数字一律按字符串写出
         var jsonOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
