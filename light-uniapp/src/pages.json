@@ -1,0 +1,17 @@
+{
+  "pages": [
+    {
+      "path": "pages/index",
+      "style": {
+        "navigationBarTitleText": "Light UniApp",
+        "navigationStyle": "default"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarBackgroundColor": "#f8fafc",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Light UniApp",
+    "backgroundColor": "#f8fafc"
+  }
+}

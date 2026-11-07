@@ -30,9 +30,21 @@
 
 # Rust
 **/target/
-# note: cargo target under light-axum only; pattern above covers it
+
+# Node / Frontend
+**/node_modules/
+**/dist-ssr/
+**/.output/
+**/unpackage/
+**/.uni-app/
+**/dist/dev/
+**/dist/build/
+*.local
 
 # Logs / env
 *.log
 .env
 .env.*
+!.env.development
+!.env.production
+!.env*.example

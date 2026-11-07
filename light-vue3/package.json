@@ -1,0 +1,25 @@
+{
+  "name": "light-vue3",
+  "private": true,
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "dev:admin": "pnpm --filter @light/admin dev",
+    "dev:portal": "pnpm --filter @light/portal dev",
+    "build": "pnpm -r --filter \"@light/*\" build",
+    "build:admin": "pnpm --filter @light/admin build",
+    "build:portal": "pnpm --filter @light/portal build",
+    "lint": "pnpm -r --filter \"@light/*\" lint",
+    "format": "prettier --write \"**/src/**/*.{ts,vue,css,json}\" \"**/vite.config.ts\" \"packages/**/*.ts\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-vue": "^10.1.0",
+    "globals": "^16.2.0",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.33.0",
+    "vue-eslint-parser": "^10.1.3"
+  },
+  "type": "module"
+}

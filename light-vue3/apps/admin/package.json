@@ -1,0 +1,27 @@
+{
+  "name": "@light/admin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -p tsconfig.json --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src vite.config.ts --max-warnings 0",
+    "format": "prettier --write \"src/**/*.{ts,vue,css}\" vite.config.ts"
+  },
+  "dependencies": {
+    "@light/request": "workspace:*",
+    "vue": "^3.5.16",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.8",
+    "@types/node": "^26.6.6",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "tailwindcss": "^4.1.8",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "vue-tsc": "^2.2.10"
+  }
+}

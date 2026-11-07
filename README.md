@@ -13,6 +13,8 @@ Spring 仓内仍用 `light-*` 模块名与聚合目录习惯。
 | [light-gin](light-gin/) | Gin | 单 Go module |
 | [light-fastapi](light-fastapi/) | FastAPI | 顶层包 |
 | [light-axum](light-axum/) | Axum | Cargo workspace |
+| [light-vue3](light-vue3/) | Vue 3 + Vite | pnpm workspace（admin / portal） |
+| [light-uniapp](light-uniapp/) | uni-app | H5 / 微信小程序 / App |
 
 ## 分层对照
 
@@ -34,6 +36,7 @@ Spring 仓内仍用 `light-*` 模块名与聚合目录习惯。
 - 响应：`code` / `message` / `data`
 - JSON：snake_case；数字尽量按字符串输出
 - 404 → JSON；Admin `:8081`，Portal `:8080`
+- 前端 Axios：`code === "0"` 时取 `data`，否则抛业务错误
 
 ## 启动摘要
 
@@ -43,4 +46,6 @@ cd light-aspnetcore && dotnet run --project src/apps/admin
 cd light-gin && go run ./apps/admin
 cd light-fastapi && .venv/bin/uvicorn apps.admin.main:app --port 8081
 cd light-axum && cargo run -p apps_admin
+cd light-vue3 && pnpm install && pnpm dev:admin
+cd light-uniapp && pnpm install && pnpm dev:h5
 ```
