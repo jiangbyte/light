@@ -66,32 +66,87 @@ Admin / Portal 双端 · 统一响应约定 · 可独立演进
 | 入站适配器 | `light-triggers/*` | `triggers/admin` · `triggers/portal` |
 | 组装启动 | `light-apps/*` | `apps/admin` · `apps/portal` |
 
-依赖方向：
+### 六边形视角
 
-```text
-types ← domain ← infrastructure
-apis ← types
-triggers ← apis + domain + types
-apps ← triggers + infrastructure   （组合根）
+```mermaid
+flowchart TB
+  subgraph inbound [入站]
+    AdminApp[apps/admin]
+    PortalApp[apps/portal]
+    TriggerAdmin[triggers/admin]
+    TriggerPortal[triggers/portal]
+    ApiAdmin[apis/admin]
+    ApiPortal[apis/portal]
+  end
+
+  subgraph core [内核]
+    Domain[domain]
+    Types[types]
+  end
+
+  subgraph outbound [出站]
+    Infra[infrastructure]
+  end
+
+  AdminApp --> TriggerAdmin
+  PortalApp --> TriggerPortal
+  AdminApp --> Infra
+  PortalApp --> Infra
+  TriggerAdmin --> ApiAdmin
+  TriggerPortal --> ApiPortal
+  TriggerAdmin --> Domain
+  TriggerPortal --> Domain
+  TriggerAdmin --> Types
+  TriggerPortal --> Types
+  ApiAdmin --> Types
+  ApiPortal --> Types
+  Domain --> Types
+  Infra --> Domain
+```
+
+### 模块依赖（单向）
+
+```mermaid
+flowchart LR
+  Types[types]
+  Domain[domain]
+  Infra[infrastructure]
+  Apis[apis]
+  Triggers[triggers]
+  Apps[apps]
+
+  Domain --> Types
+  Infra --> Domain
+  Apis --> Types
+  Triggers --> Apis
+  Triggers --> Domain
+  Triggers --> Types
+  Apps --> Triggers
+  Apps --> Infra
 ```
 
 禁止：`domain` 依赖 Web/DB 框架；`apis` 依赖 `domain` 实现细节。
 
 ## 目录结构
 
-```text
-light/
-├── light-spring/          # Java / Spring Boot
-├── light-aspnetcore/      # C# / ASP.NET Core
-├── light-gin/             # Go / Gin
-├── light-fastapi/         # Python / FastAPI
-├── light-axum/            # Rust / Axum
-├── light-vue3/            # Vue3 Web（admin + portal）
-│   ├── apps/admin
-│   ├── apps/portal
-│   └── packages/request   # Axios 统一响应封装
-├── light-uniapp/          # uni-app 多端
-└── README.md
+```mermaid
+flowchart TB
+  Light[light]
+  Light --> Spring[light-spring]
+  Light --> AspNet[light-aspnetcore]
+  Light --> Gin[light-gin]
+  Light --> FastAPI[light-fastapi]
+  Light --> Axum[light-axum]
+  Light --> Vue3[light-vue3]
+  Light --> Uni[light-uniapp]
+
+  Vue3 --> VueAdmin[apps/admin]
+  Vue3 --> VuePortal[apps/portal]
+  Vue3 --> Request["packages/request"]
+
+  Uni --> H5[H5]
+  Uni --> Mp[mp-weixin]
+  Uni --> App[app / APK]
 ```
 
 ## 统一应用约定
@@ -104,6 +159,15 @@ light/
 | 错误页 | 404 / 业务异常统一 JSON，避免框架默认 HTML 页 |
 | 端口 | Admin `:8081`，Portal `:8080` |
 | 前端 | `code === "0"` → 返回 `data`；否则 `BizError` |
+
+### 请求解包
+
+```mermaid
+flowchart LR
+  Client[Frontend http] --> Resp["ApiResponse"]
+  Resp -->|"code is 0"| Data[resolve data]
+  Resp -->|"code not 0"| Err[reject BizError]
+```
 
 ## 快速开始
 
@@ -150,6 +214,13 @@ cd light-uniapp && pnpm install && pnpm dev:h5
 - **light-vue3**：单文件 `tsconfig.json`；Tailwind CSS v4；ESLint Flat + Prettier；共享包 `@light/request`
 - **light-uniapp**：H5 / `mp-weixin` / `app`；Tailwind + `weapp-tailwindcss`；Axios + 非 H5 的 `uni.request` 适配器
 - 环境变量：`VITE_API_BASE`（vue3 两端与 uni 各有 `.env.development`）
+
+```mermaid
+flowchart LR
+  VueAdmin[light-vue3 admin :5173] -->|"VITE_API_BASE"| BackendAdmin[Backend :8081]
+  VuePortal[light-vue3 portal :5174] -->|"VITE_API_BASE"| BackendPortal[Backend :8080]
+  UniApp[light-uniapp] -->|"VITE_API_BASE"| BackendPortal
+```
 
 ## 常用命令
 
