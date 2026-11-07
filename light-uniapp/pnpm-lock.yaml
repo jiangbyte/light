@@ -57,8 +57,11 @@ importers:
         specifier: 3.0.0-5020620260917001
         version: 3.0.0-5020620260917001(postcss@8.5.32)(rollup@4.14.3)(vue@3.4.21(typescript@5.9.3))
       axios:
-        specifier: ^1.9.0
+        specifier: ^1.21.0
         version: 1.21.0
+      pinia:
+        specifier: 2.2.4
+        version: 2.2.4(typescript@5.9.3)(vue@3.4.21(typescript@5.9.3))
       vue:
         specifier: 3.4.21
         version: 3.4.21(typescript@5.9.3)
@@ -127,7 +130,7 @@ importers:
         specifier: 1.64.2
         version: 1.64.2
       tailwindcss:
-        specifier: ^4.3.3
+        specifier: ^4.3.5
         version: 4.3.5
       typescript:
         specifier: 5.9.3
@@ -136,7 +139,7 @@ importers:
         specifier: 5.2.8
         version: 5.2.8(@types/node@26.6.6)(lightningcss@1.33.0)(sass@1.64.2)(terser@5.51.2)
       vue-tsc:
-        specifier: ^3.3.11
+        specifier: ^3.3.14
         version: 3.3.14(typescript@5.9.3)
       weapp-tailwindcss:
         specifier: ^5.5.6
@@ -5054,6 +5057,18 @@ packages:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
 
+  pinia@2.2.4:
+    resolution: {integrity: sha512-K7ZhpMY9iJ9ShTC0cR2+PnxdQRuwVIsXDO/WIEV/RnMC/vmSoKDTKW/exNQYPI+4ij10UjXqdNiEHwn47McANQ==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.3.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
@@ -6006,6 +6021,17 @@ packages:
 
   vscode-uri@3.2.0:
     resolution: {integrity: sha512-m2gXo3bn0G1kT9InzMf07fTbqMbGtyckj3bH5ktLO+1Ssv+yiATZ4dhwaQv9UZWxJh6E9IFGnQyjgWVDWVBDrg==}
+
+  vue-demi@0.14.10:
+    resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
+    engines: {node: '>=12'}
+    hasBin: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
 
   vue-eslint-parser@10.4.2:
     resolution: {integrity: sha512-WMpzulb50kb6snghzoGzS++62wcOszAk/piYcnvzdStM8Wni/BmogYltpoOFv2eK9hDbXxvwFQgnwZGpAoUfpA==}
@@ -12334,6 +12360,14 @@ snapshots:
 
   picomatch@4.0.7: {}
 
+  pinia@2.2.4(typescript@5.9.3)(vue@3.4.21(typescript@5.9.3)):
+    dependencies:
+      '@vue/devtools-api': 6.6.4
+      vue: 3.4.21(typescript@5.9.3)
+      vue-demi: 0.14.10(vue@3.4.21(typescript@5.9.3))
+    optionalDependencies:
+      typescript: 5.9.3
+
   pirates@4.0.7: {}
 
   pixelmatch@4.0.2:
@@ -13372,6 +13406,10 @@ snapshots:
   vscode-languageserver-types@3.18.5: {}
 
   vscode-uri@3.2.0: {}
+
+  vue-demi@0.14.10(vue@3.4.21(typescript@5.9.3)):
+    dependencies:
+      vue: 3.4.21(typescript@5.9.3)
 
   vue-eslint-parser@10.4.2(eslint@10.14.0(jiti@2.7.0)):
     dependencies:

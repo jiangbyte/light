@@ -1,23 +1,16 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { BizError } from '@light/request'
-import { fetchHealth, type HealthData } from '@/api/health'
+import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
+import { useAppStore } from '@/stores/app'
+import { useHealthStore } from '@/stores/health'
 
-const title = 'Light Portal'
-const loading = ref(false)
-const health = ref<HealthData | null>(null)
-const error = ref('')
+const appStore = useAppStore()
+const healthStore = useHealthStore()
+const { title, stackHint } = storeToRefs(appStore)
+const { loading, data: health, error } = storeToRefs(healthStore)
 
-onMounted(async () => {
-  loading.value = true
-  error.value = ''
-  try {
-    health.value = await fetchHealth()
-  } catch (e) {
-    error.value = e instanceof BizError ? `[${e.code}] ${e.message}` : '请求失败'
-  } finally {
-    loading.value = false
-  }
+onMounted(() => {
+  void healthStore.load()
 })
 </script>
 
@@ -26,7 +19,7 @@ onMounted(async () => {
     <header class="space-y-2">
       <p class="text-sm font-medium tracking-wide text-slate-500">Light Vue3</p>
       <h1 class="text-3xl font-semibold tracking-tight">{{ title }}</h1>
-      <p class="text-slate-600">Vite + Vue3 + Tailwind + Axios（统一 code/message/data）</p>
+      <p class="text-slate-600">{{ stackHint }}</p>
     </header>
 
     <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">

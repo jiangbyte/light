@@ -6,6 +6,7 @@ uni-app（Vue3 + Vite + TS）：**H5 / 微信小程序 / App（APK）**。
 
 - `@uni-helper/unh` + `@dcloudio/vite-plugin-uni`
 - Tailwind CSS v4 + `weapp-tailwindcss`
+- Pinia（`src/stores`；锁 `2.2.4` 以匹配 DCloud 的 Vue `3.4.x`）
 - **单文件** `tsconfig.json`
 - ESLint + Prettier
 - Axios 封装（`src/utils/request.ts`）：成功 `code === "0000"` 返回 `data`；非 H5 使用 `uni.request` 适配器

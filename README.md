@@ -7,12 +7,12 @@
 Spring · ASP.NET · Gin · FastAPI · Axum · Vue3 · uni-app  
 Admin / Portal 双端 · 统一响应约定 · 可独立演进
 
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?logo=springboot&logoColor=white)](light-spring/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1-6DB33F?logo=springboot&logoColor=white)](light-spring/)
 [![.NET](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)](light-aspnetcore/)
-[![Go](https://img.shields.io/badge/Go-Gin-00ADD8?logo=go&logoColor=white)](light-gin/)
-[![Python](https://img.shields.io/badge/Python-FastAPI-009688?logo=fastapi&logoColor=white)](light-fastapi/)
-[![Rust](https://img.shields.io/badge/Rust-Axum-DEA584?logo=rust&logoColor=black)](light-axum/)
-[![Vue](https://img.shields.io/badge/Vue-3-brightgreen?logo=vue.js&logoColor=white)](light-vue3/)
+[![Go](https://img.shields.io/badge/Go%201.27%20%7C%20Gin%201.12-00ADD8?logo=go&logoColor=white)](light-gin/)
+[![Python](https://img.shields.io/badge/FastAPI-0.162-009688?logo=fastapi&logoColor=white)](light-fastapi/)
+[![Rust](https://img.shields.io/badge/Axum-0.8-DEA584?logo=rust&logoColor=black)](light-axum/)
+[![Vue](https://img.shields.io/badge/Vue-3.5%20%7C%20Pinia%20%7C%20Vite%208-brightgreen?logo=vue.js&logoColor=white)](light-vue3/)
 [![uni-app](https://img.shields.io/badge/uni--app-H5%20%7C%20MP%20%7C%20App-2B9939?logo=vuedotjs&logoColor=white)](light-uniapp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
@@ -47,13 +47,13 @@ Admin / Portal 双端 · 统一响应约定 · 可独立演进
 
 | 目录 | 技术载体 | 工程形态 |
 |------|----------|----------|
-| [light-spring](light-spring/) | Spring Boot | Maven 多模块（仓内 `light-*` 聚合） |
-| [light-aspnetcore](light-aspnetcore/) | ASP.NET Core | Solution + Projects |
-| [light-gin](light-gin/) | Gin | 单 Go module |
-| [light-fastapi](light-fastapi/) | FastAPI | 顶层包 |
-| [light-axum](light-axum/) | Axum | Cargo workspace |
-| [light-vue3](light-vue3/) | Vue 3 + Vite | pnpm workspace（admin / portal） |
-| [light-uniapp](light-uniapp/) | uni-app | H5 / 微信小程序 / App |
+| [light-spring](light-spring/) | Spring Boot **4.1** · Java **25** | Maven 多模块（仓内 `light-*` 聚合） |
+| [light-aspnetcore](light-aspnetcore/) | ASP.NET Core **.NET 10** | Solution + Projects |
+| [light-gin](light-gin/) | Go **1.27** · Gin **1.12** | 单 Go module |
+| [light-fastapi](light-fastapi/) | FastAPI **0.162** · Python **≥3.12** | 顶层包 |
+| [light-axum](light-axum/) | Axum **0.8** | Cargo workspace |
+| [light-vue3](light-vue3/) | Vue **3.5** · Vite **8** | pnpm workspace（admin / portal） |
+| [light-uniapp](light-uniapp/) | uni-app（H5 / 微信小程序 / App） | Vite + Vue3 |
 
 ## 架构约定
 
@@ -219,8 +219,9 @@ cd light-uniapp && pnpm install && pnpm dev:h5
 
 ## 前端说明
 
-- **light-vue3**：单文件 `tsconfig.json`；Tailwind CSS v4；ESLint Flat + Prettier；共享包 `@light/request`
-- **light-uniapp**：H5 / `mp-weixin` / `app`；Tailwind + `weapp-tailwindcss`；Axios + 非 H5 的 `uni.request` 适配器
+- **light-vue3**：单文件 `tsconfig.json`；Pinia；Tailwind CSS v4；ESLint Flat + Prettier；共享包 `@light/request`
+- **light-uniapp**：H5 / `mp-weixin` / `app`；Pinia；Tailwind + `weapp-tailwindcss`；Axios + 非 H5 的 `uni.request` 适配器
+- Store 约定：`src/stores` + Composition API（`defineStore(() => {})`），首页 `/health` 示例已迁入 Store
 - 环境变量：`VITE_API_BASE`（vue3 两端与 uni 各有 `.env.development`）
 
 ```mermaid
