@@ -1,0 +1,12 @@
+[package]
+name = "apps_portal"
+version = "0.1.0"
+edition = "2021"
+[[bin]]
+name = "apps-portal"
+path = "src/main.rs"
+[dependencies]
+triggers_portal = { path = "../../triggers/portal" }
+infrastructure = { path = "../../infrastructure" }
+tokio = { version = "1", features = ["full"] }
+axum = "0.8"

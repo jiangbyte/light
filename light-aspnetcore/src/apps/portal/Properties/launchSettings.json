@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "portal": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:8080"
+    }
+  }
+}

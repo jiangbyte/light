@@ -1,0 +1,12 @@
+[package]
+name = "apps_admin"
+version = "0.1.0"
+edition = "2021"
+[[bin]]
+name = "apps-admin"
+path = "src/main.rs"
+[dependencies]
+triggers_admin = { path = "../../triggers/admin" }
+infrastructure = { path = "../../infrastructure" }
+tokio = { version = "1", features = ["full"] }
+axum = "0.8"

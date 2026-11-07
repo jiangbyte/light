@@ -1,0 +1,2 @@
+// 出站适配器：实现 domain 端口并对接外部资源。
+package infrastructure

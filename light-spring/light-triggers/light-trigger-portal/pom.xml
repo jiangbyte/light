@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.jiangbyte.github</groupId>
+        <artifactId>light-triggers</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>light-trigger-portal</artifactId>
+    <description>
+        Portal 入站适配器：HTTP、定时任务、消息监听；实现 light-api-portal 并调用 domain。
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jiangbyte.github</groupId>
+            <artifactId>light-types</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jiangbyte.github</groupId>
+            <artifactId>light-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jiangbyte.github</groupId>
+            <artifactId>light-api-portal</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

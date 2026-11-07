@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.jiangbyte.github</groupId>
+        <artifactId>light</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>light-domain</artifactId>
+    <description>
+        领域层：实体、值对象、聚合、领域服务，以及仓储/外部端口接口。
+        不依赖 infrastructure、trigger、app。
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.jiangbyte.github</groupId>
+            <artifactId>light-types</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

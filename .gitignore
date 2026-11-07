@@ -1,0 +1,38 @@
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+*.swp
+*~
+
+# Java / Maven
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+
+# .NET
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+
+# Go
+**/vendor/
+
+# Python
+**/__pycache__/
+**/.venv/
+**/venv/
+**/*.egg-info/
+**/.pytest_cache/
+**/dist/
+
+# Rust
+**/target/
+# note: cargo target under light-axum only; pattern above covers it
+
+# Logs / env
+*.log
+.env
+.env.*

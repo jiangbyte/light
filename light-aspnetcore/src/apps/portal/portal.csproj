@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Apps.Portal</RootNamespace>
+    <AssemblyName>Apps.Portal</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../triggers/portal/portal.csproj" />
+    <ProjectReference Include="../../infrastructure/infrastructure.csproj" />
+  </ItemGroup>
+</Project>

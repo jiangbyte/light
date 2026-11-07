@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/types/types.csproj" />
+    <Project Path="src/domain/domain.csproj" />
+    <Project Path="src/infrastructure/infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/apis/">
+    <Project Path="src/apis/admin/admin.csproj" />
+    <Project Path="src/apis/portal/portal.csproj" />
+  </Folder>
+  <Folder Name="/src/triggers/">
+    <Project Path="src/triggers/admin/admin.csproj" />
+    <Project Path="src/triggers/portal/portal.csproj" />
+  </Folder>
+  <Folder Name="/src/apps/">
+    <Project Path="src/apps/admin/admin.csproj" />
+    <Project Path="src/apps/portal/portal.csproj" />
+  </Folder>
+</Solution>
