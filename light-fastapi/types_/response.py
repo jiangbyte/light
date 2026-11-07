@@ -5,11 +5,11 @@ from pydantic import BaseModel, ConfigDict
 T = TypeVar("T")
 
 class ResponseCode:
-    SUCCESS = ("0", "成功")
-    UN_ERROR = ("1", "未知失败")
-    ILLEGAL_PARAMETER = ("400", "非法参数")
-    NOT_FOUND = ("404", "资源不存在")
-    METHOD_NOT_ALLOWED = ("405", "请求方法不支持")
+    SUCCESS = ("0000", "成功")
+    UN_ERROR = ("0001", "未知失败")
+    ILLEGAL_PARAMETER = ("0400", "非法参数")
+    NOT_FOUND = ("0404", "资源不存在")
+    METHOD_NOT_ALLOWED = ("0405", "请求方法不支持")
 
 class Response(BaseModel, Generic[T]):
     model_config = ConfigDict(populate_by_name=True)

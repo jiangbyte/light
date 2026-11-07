@@ -2,7 +2,7 @@ namespace types;
 
 public sealed class Response<T>
 {
-    public string Code { get; init; } = "0";
+    public string Code { get; init; } = "0000";
     public string Message { get; init; } = "成功";
     public T? Data { get; init; }
 
@@ -25,11 +25,11 @@ public sealed class Response<T>
 
 public sealed record ResponseCode(string Code, string Info)
 {
-    public static readonly ResponseCode Success = new("0", "成功");
-    public static readonly ResponseCode UnError = new("1", "未知失败");
-    public static readonly ResponseCode IllegalParameter = new("400", "非法参数");
-    public static readonly ResponseCode NotFound = new("404", "资源不存在");
-    public static readonly ResponseCode MethodNotAllowed = new("405", "请求方法不支持");
+    public static readonly ResponseCode Success = new("0000", "成功");
+    public static readonly ResponseCode UnError = new("0001", "未知失败");
+    public static readonly ResponseCode IllegalParameter = new("0400", "非法参数");
+    public static readonly ResponseCode NotFound = new("0404", "资源不存在");
+    public static readonly ResponseCode MethodNotAllowed = new("0405", "请求方法不支持");
 }
 
 public sealed class BizException : Exception

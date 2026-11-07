@@ -7,7 +7,7 @@ Vue 3 前端（pnpm workspace）：`apps/admin`（:5173）与 `apps/portal`（:5
 - Vite + Vue 3 + TypeScript（**单文件** `tsconfig.json`）
 - Tailwind CSS v4
 - ESLint Flat + Prettier
-- Axios 封装：`@light/request`（成功 `code === "0"` 时返回 `data`）
+- Axios 封装：`@light/request`（成功 `code === "0000"` 时返回 `data`）
 
 ## 命令
 

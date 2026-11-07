@@ -23,9 +23,13 @@ impl Response<()> {
 
 impl<T: Serialize> Response<T> {
     pub fn success(data: Option<T>) -> Self {
-        Self { code: "0".into(), message: "成功".into(), data }
+        let (c, m) = SUCCESS;
+        Self { code: c.into(), message: m.into(), data }
     }
 }
 
-pub const NOT_FOUND: (&str, &str) = ("404", "资源不存在");
-pub const METHOD_NOT_ALLOWED: (&str, &str) = ("405", "请求方法不支持");
+pub const SUCCESS: (&str, &str) = ("0000", "成功");
+pub const UN_ERROR: (&str, &str) = ("0001", "未知失败");
+pub const ILLEGAL_PARAMETER: (&str, &str) = ("0400", "非法参数");
+pub const NOT_FOUND: (&str, &str) = ("0404", "资源不存在");
+pub const METHOD_NOT_ALLOWED: (&str, &str) = ("0405", "请求方法不支持");

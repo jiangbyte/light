@@ -7,11 +7,11 @@ type Response struct {
 }
 
 const (
-	CodeSuccess          = "0"
-	CodeUnError          = "1"
-	CodeIllegalParameter = "400"
-	CodeNotFound         = "404"
-	CodeMethodNotAllowed = "405"
+	CodeSuccess          = "0000"
+	CodeUnError          = "0001"
+	CodeIllegalParameter = "0400"
+	CodeNotFound         = "0404"
+	CodeMethodNotAllowed = "0405"
 )
 
 func Success(data any) Response {

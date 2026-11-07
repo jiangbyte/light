@@ -8,7 +8,7 @@ uni-app（Vue3 + Vite + TS）：**H5 / 微信小程序 / App（APK）**。
 - Tailwind CSS v4 + `weapp-tailwindcss`
 - **单文件** `tsconfig.json`
 - ESLint + Prettier
-- Axios 封装（`src/utils/request.ts`）：成功 `code === "0"` 返回 `data`；非 H5 使用 `uni.request` 适配器
+- Axios 封装（`src/utils/request.ts`）：成功 `code === "0000"` 返回 `data`；非 H5 使用 `uni.request` 适配器
 
 ## 命令
 

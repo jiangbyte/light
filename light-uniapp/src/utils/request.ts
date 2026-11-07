@@ -18,7 +18,7 @@ export class BizError extends Error {
   }
 }
 
-export const SUCCESS_CODE = '0'
+export const SUCCESS_CODE = '0000'
 
 export interface CreateHttpOptions extends CreateAxiosDefaults {
   successCode?: string
@@ -44,7 +44,7 @@ function isApiResponse(value: unknown): value is ApiResponse {
 
 function unwrap<T>(payload: unknown, successCode: string): T | null {
   if (!isApiResponse(payload)) {
-    throw new BizError('1', '响应不是统一 ApiResponse 结构')
+    throw new BizError('0001', '响应不是统一 ApiResponse 结构')
   }
   if (String(payload.code) !== successCode) {
     throw new BizError(String(payload.code), payload.message || '业务失败')
@@ -128,9 +128,10 @@ export function createHttp(options: CreateHttpOptions = {}): HttpClient {
           return Promise.reject(new BizError(String(data.code), data.message || error.message))
         }
         const status = error.response?.status
-        return Promise.reject(new BizError(status
-          ? String(status)
-          : '1', error.message || '网络异常'))
+        return Promise.reject(new BizError(
+          status != null ? String(status).padStart(4, '0') : '0001',
+          error.message || '网络异常',
+        ))
       }
       return Promise.reject(error)
     },
