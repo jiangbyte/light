@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 /**
  * 通用接口响应包装；Admin / Portal 共用。
+ * Author: Charlie
  */
 @Data
 @Builder

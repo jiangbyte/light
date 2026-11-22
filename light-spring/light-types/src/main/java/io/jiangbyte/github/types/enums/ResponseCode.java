@@ -15,8 +15,10 @@ public enum ResponseCode {
     SUCCESS("0000", "成功"),
     UN_ERROR("0001", "未知失败"),
     ILLEGAL_PARAMETER("0400", "非法参数"),
+    UNAUTHORIZED("0401", "未登录或登录已失效"),
     NOT_FOUND("0404", "资源不存在"),
     METHOD_NOT_ALLOWED("0405", "请求方法不支持"),
+    CONFLICT("0409", "资源冲突"),
     ;
 
     private String code;

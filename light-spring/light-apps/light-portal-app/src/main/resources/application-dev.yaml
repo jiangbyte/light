@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: ${LIGHT_DB_URL:jdbc:mysql://127.0.0.1:3306/light?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${LIGHT_DB_USERNAME:root}
+    password: ${LIGHT_DB_PASSWORD:infra123!}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+  flyway:
+    enabled: true
+    locations: classpath:db/migration/account
+  data:
+    redis:
+      host: ${LIGHT_REDIS_HOST:127.0.0.1}
+      port: ${LIGHT_REDIS_PORT:6379}
+      password: ${LIGHT_REDIS_PASSWORD:infra123!}
+      database: ${LIGHT_REDIS_DATABASE:0}
+      timeout: 3s
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.jiangbyte.github</groupId>
+        <artifactId>light-apps</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>light-app-common</artifactId>
+    <packaging>jar</packaging>
+    <description>
+        应用公共层：统一 Web、序列化、异常响应、启动提示与应用认证装配。
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.jiangbyte.github</groupId>
+            <artifactId>light-types</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-core</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

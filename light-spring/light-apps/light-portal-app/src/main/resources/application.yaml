@@ -3,14 +3,39 @@ spring:
     name: light-portal
   profiles:
     active: dev
-  mvc:
-    throw-exception-if-no-handler-found: true
+  autoconfigure:
+    exclude:
+      - cn.dev33.satoken.dao.SaTokenDaoForRedisTemplate
   web:
     resources:
       add-mappings: false
+    error:
+      whitelabel:
+        enabled: false
 
 server:
   port: 8080
-  error:
-    whitelabel:
-      enabled: false
+
+light:
+  security:
+    sm2:
+      portal:
+        private-key: ${LIGHT_SM2_PORTAL_PRIVATE_KEY:}
+        public-key: ${LIGHT_SM2_PORTAL_PUBLIC_KEY:}
+  sa-token:
+    portal:
+      token-name: Authorization
+      token-prefix: ""
+      token-style: random-64
+      timeout: 604800
+      active-timeout: 7200
+      auto-renew: true
+      concurrent: true
+      share: false
+      max-login-count: -1
+      read-header: true
+      read-body: false
+      read-cookie: false
+      write-header: false
+      print: false
+      log: false

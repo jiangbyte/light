@@ -10,6 +10,6 @@
  * - service：跨实体的领域行为编排
  *
  * Admin 与 Portal 共用本层模型，不要按入口拆两套领域。
- * 开新业务时，复制 template 子树并改成真实上下文名。
+ * 新业务直接建立以其领域命名的目录，并保持各层领域名一致。
  */
 package io.jiangbyte.github.domain;

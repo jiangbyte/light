@@ -1,4 +1,102 @@
-<div align="center">
+② 
+
+1
+
+𝑥
+
+2
+
+𝑓
+
+(
+
+𝑥
+
+)
+
++
+
+2
+
+𝑓
+
+(
+
+1
+
+𝑥
+
+)
+
+=
+
+1
+
++
+
+2
+
+𝑥
+
+𝑥
+
+𝑥
+
+2
+
++
+
+1
+
+x 
+
+2
+
+ 
+
+1
+
+​
+
+ f(x)+2f( 
+
+x
+
+1
+
+​
+
+ )= 
+
+x 
+
+x 
+
+2
+
+ +1
+
+​
+
+ 
+
+1+2x
+
+​
+
+ 
+
+我们的目标是求 
+
+𝑓
+
+(
+
+𝑥
+
+)
+
+f(x)，
 
 # Light
 
@@ -7,16 +105,16 @@
 Spring · ASP.NET · Gin · FastAPI · Axum · Vue3 · uni-app  
 Admin / Portal 双端 · 统一响应约定 · 可独立演进
 
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1-6DB33F?logo=springboot&logoColor=white)](light-spring/)
-[![.NET](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)](light-aspnetcore/)
-[![Go](https://img.shields.io/badge/Go%201.27%20%7C%20Gin%201.12-00ADD8?logo=go&logoColor=white)](light-gin/)
-[![Python](https://img.shields.io/badge/FastAPI-0.162-009688?logo=fastapi&logoColor=white)](light-fastapi/)
-[![Rust](https://img.shields.io/badge/Axum-0.8-DEA584?logo=rust&logoColor=black)](light-axum/)
-[![Vue](https://img.shields.io/badge/Vue-3.5%20%7C%20Pinia%20%7C%20Vite%208-brightgreen?logo=vue.js&logoColor=white)](light-vue3/)
-[![uni-app](https://img.shields.io/badge/uni--app-H5%20%7C%20MP%20%7C%20App-2B9939?logo=vuedotjs&logoColor=white)](light-uniapp/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1-6DB33F?logo=springboot&logoColor=white)
+![.NET](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
+![Go](https://img.shields.io/badge/Go%201.27%20%7C%20Gin%201.12-00ADD8?logo=go&logoColor=white)
+![Python](https://img.shields.io/badge/FastAPI-0.162-009688?logo=fastapi&logoColor=white)
+![Rust](https://img.shields.io/badge/Axum-0.8-DEA584?logo=rust&logoColor=black)
+![Vue](https://img.shields.io/badge/Vue-3.5%20%7C%20Pinia%20%7C%20Vite%208-brightgreen?logo=vue.js&logoColor=white)
+![uni-app](https://img.shields.io/badge/uni--app-H5%20%7C%20MP%20%7C%20App-2B9939?logo=vuedotjs&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-</div>
+
 
 > 同一套领域分层与接口约定，按各语言惯用工程形态落地：角色对齐、依赖单向、可按栈单独取用。
 
@@ -39,7 +137,7 @@ Admin / Portal 双端 · 统一响应约定 · 可独立演进
 - **DDD + 六边形**：`types` / `domain` / `infrastructure` / `apis` / `triggers` / `apps` 角色清晰，依赖单向
 - **Admin / Portal 双入口**：后端可独立部署（默认 `:8081` / `:8080`）；Vue3 对应 `apps/admin` / `apps/portal`
 - **跨栈同构约定**：统一响应 `{ code, message, data }`，JSON `snake_case`，数字一律按字符串输出，404 返回 JSON
-- **占位骨架**：`domain/template`（或等价命名空间）+ 分层说明 + `Xxx*` 命名示例，复制后改名即可开业务
+- **占位骨架**：`domain/template`（或等价命名空间）+ 分层说明 + `Xxx`* 命名示例，复制后改名即可开业务
 - **前端请求封装**：Axios 对齐后端成功码 `code === "0000"` 解包 `data`，业务失败抛 `BizError`
 - **多端前端**：`light-vue3`（Web）与 `light-uniapp`（H5 / 微信小程序 / App）
 
@@ -47,7 +145,7 @@ Admin / Portal 双端 · 统一响应约定 · 可独立演进
 
 | 目录 | 技术载体 | 工程形态 |
 |------|----------|----------|
-| [light-spring](light-spring/) | Spring Boot **4.1** · Java **25** | Maven 多模块（仓内 `light-*` 聚合） |
+| [light-spring](light-spring/) | Spring Boot **4.1** · Java **25** | Maven 多模块（仓内 `light-`* 聚合） |
 | [light-aspnetcore](light-aspnetcore/) | ASP.NET Core **.NET 10** | Solution + Projects |
 | [light-gin](light-gin/) | Go **1.27** · Gin **1.12** | 单 Go module |
 | [light-fastapi](light-fastapi/) | FastAPI **0.162** · Python **≥3.12** | 顶层包 |
