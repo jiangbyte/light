@@ -2,7 +2,8 @@
 
 Light 系列的 **Spring Boot** 实现：DDD + 六边形（Maven 多模块）。
 
-账户领域已提供完整的实体、端口、持久化、API 和 Trigger 示例，新增业务按相同分层直接扩展。
+账户领域已提供完整的实体、端口、持久化、API 和 Trigger 示例；内容领域提供通知公告
+CRUD、分页、发布状态机和应用服务规范示例。
 
 ## 启动
 
@@ -26,7 +27,10 @@ mvn -pl light-apps/light-portal-app spring-boot:run  # :8080
 - 两端接口统一由控制器声明 `/api`，不配置全局 `context-path`；Admin CRUD 路径为
   `/api/accounts/admins` 和 `/api/accounts/portal-users`。
 - 所有业务接口只接受 GET/POST，不使用路径变量；详情使用 `?id=`，更新和删除通过 POST 请求体传 ID。
-- 删除请求使用 `{ "ids": ["1"] }`，单个删除和批量删除共用同一数组契约。
+- 分页接口统一使用 `/page`；`/list` 仅用于不分页列表。账户分页路径为
+  `/api/accounts/admins/page` 和 `/api/accounts/portal-users/page`。
+- 删除请求统一使用 `light-types` 中的 `IdsRequestDTO`：
+  `{ "ids": ["1"] }`，单个删除和批量删除共用同一数组契约。
 - 登录成功后返回不透明 Sa-Token 令牌。后续请求将原始令牌直接放入
   `Authorization` 请求头，值中不添加任何认证方案前缀。
 - 登录、创建账户和修改密码时，`password` 必须使用传输密钥加密；
@@ -37,6 +41,17 @@ mvn -pl light-apps/light-portal-app spring-boot:run  # :8080
 - 所有 `LocalDateTime` 字段统一使用 `yyyy-MM-dd HH:mm:ss` 读写。
 - 领域实体到 API DTO 的转换使用 MapStruct 在编译期生成，避免手写 setter 映射。
 - 分页响应统一使用泛型 `PageResult<T>`；查询参数封装为业务查询对象，并由 GET 参数 DTO 绑定。
+
+## 通知公告
+
+- Admin 管理接口位于 `/api/announcements`，提供分页、详情、创建、更新、删除、发布和归档。
+- Portal 提供 `/api/announcements/page` 与 `/api/announcements/detail`，只返回当前已生效公告。
+- 公告状态为 `DRAFT`、`PUBLISHED`、`ARCHIVED`，归档后可重新发布。
+- 类型为 `NOTICE`、`ANNOUNCEMENT`、`MAINTENANCE`；优先级为 `NORMAL`、`IMPORTANT`、`URGENT`。
+- 支持未来发布时间和过期时间，不在后台定时修改状态。
+- 公告删除为物理删除；发布窗口通过 `publish_at`、`expire_at` 与当前时间计算。
+
+详细接口和分层示例见 [通知公告模块](docs/content-announcement-module.md)。
 
 首个管理员仅在 `light_admin_user` 为空时创建，配置项为
 `LIGHT_BOOTSTRAP_ADMIN_USERNAME`、`LIGHT_BOOTSTRAP_ADMIN_PASSWORD`、
@@ -67,15 +82,22 @@ mvn -pl light-apps/light-portal-app spring-boot:run  # :8080
 
 ```text
 domain/account
+domain/content/announcement
 api/admin/account/auth
 api/admin/account/management
+api/admin/content/announcement
 trigger/admin/account/auth/http
 trigger/admin/account/auth/application
 trigger/admin/account/management/http
 trigger/admin/account/management/application
+trigger/admin/content/announcement/http
+trigger/admin/content/announcement/application
+trigger/portal/content/announcement/http
+trigger/portal/content/announcement/application
 infrastructure/account/auth
 infrastructure/account/persistence
+infrastructure/content/announcement
 ```
 
-新增业务时参照 `account` 的领域目录结构，在 domain、api、trigger、infrastructure 中使用
-相同的领域目录名。
+新增业务时参照 `account` 或 `content/announcement` 的目录结构，在 domain、api、trigger、
+infrastructure 中使用相同的领域目录名。

@@ -1,7 +1,8 @@
 package io.jiangbyte.github.infrastructure.account.persistence.repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.jiangbyte.github.domain.account.adapter.repository.AccountIdentifierConflictException;
 import io.jiangbyte.github.domain.account.adapter.repository.IAccountRepository;
@@ -163,8 +164,17 @@ public class AccountRepository implements IAccountRepository {
     }
 
     private void updateAdmin(AccountEntity account) {
-        UpdateWrapper<AdminAccountPO> wrapper = new UpdateWrapper<>();
-        applyUpdate(wrapper, account);
+        LambdaUpdateWrapper<AdminAccountPO> wrapper = new LambdaUpdateWrapper<>();
+        applyUpdate(wrapper, account,
+                AdminAccountPO::getId,
+                AdminAccountPO::getUsername,
+                AdminAccountPO::getPasswordHash,
+                AdminAccountPO::getNickname,
+                AdminAccountPO::getEmail,
+                AdminAccountPO::getPhone,
+                AdminAccountPO::getStatus,
+                AdminAccountPO::getTokenVersion,
+                AdminAccountPO::getUpdatedAt);
         try {
             adminDao.update(null, wrapper);
         } catch (DuplicateKeyException ex) {
@@ -173,8 +183,17 @@ public class AccountRepository implements IAccountRepository {
     }
 
     private void updatePortal(AccountEntity account) {
-        UpdateWrapper<PortalAccountPO> wrapper = new UpdateWrapper<>();
-        applyUpdate(wrapper, account);
+        LambdaUpdateWrapper<PortalAccountPO> wrapper = new LambdaUpdateWrapper<>();
+        applyUpdate(wrapper, account,
+                PortalAccountPO::getId,
+                PortalAccountPO::getUsername,
+                PortalAccountPO::getPasswordHash,
+                PortalAccountPO::getNickname,
+                PortalAccountPO::getEmail,
+                PortalAccountPO::getPhone,
+                PortalAccountPO::getStatus,
+                PortalAccountPO::getTokenVersion,
+                PortalAccountPO::getUpdatedAt);
         try {
             portalDao.update(null, wrapper);
         } catch (DuplicateKeyException ex) {
@@ -182,22 +201,31 @@ public class AccountRepository implements IAccountRepository {
         }
     }
 
-    private void applyUpdate(UpdateWrapper<? extends AccountPO> wrapper, AccountEntity account) {
-        wrapper.eq("id", account.getId())
-                .set("username", account.getUsername())
-                .set("password_hash", account.getPasswordHash())
-                .set("nickname", account.getNickname())
-                .set("email", account.getEmail())
-                .set("phone", account.getPhone())
-                .set("status", account.getStatus().name())
-                .set("token_version", account.getTokenVersion())
-                .set("updated_at", account.getUpdatedAt());
+    private <T extends AccountPO> void applyUpdate(LambdaUpdateWrapper<T> wrapper, AccountEntity account,
+                                                    SFunction<T, ?> id,
+                                                    SFunction<T, ?> username,
+                                                    SFunction<T, ?> passwordHash,
+                                                    SFunction<T, ?> nickname,
+                                                    SFunction<T, ?> email,
+                                                    SFunction<T, ?> phone,
+                                                    SFunction<T, ?> status,
+                                                    SFunction<T, ?> tokenVersion,
+                                                    SFunction<T, ?> updatedAt) {
+        wrapper.eq(id, account.getId())
+                .set(username, account.getUsername())
+                .set(passwordHash, account.getPasswordHash())
+                .set(nickname, account.getNickname())
+                .set(email, account.getEmail())
+                .set(phone, account.getPhone())
+                .set(status, account.getStatus().name())
+                .set(tokenVersion, account.getTokenVersion())
+                .set(updatedAt, account.getUpdatedAt());
     }
 
     private <T extends AccountPO> void applyIdentifier(LambdaQueryWrapper<T> wrapper,
-                                                       com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> username,
-                                                       com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> email,
-                                                       com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> phone,
+                                                       SFunction<T, ?> username,
+                                                       SFunction<T, ?> email,
+                                                       SFunction<T, ?> phone,
                                                        LoginMethod method, String identifier) {
         switch (method) {
             case USERNAME -> wrapper.eq(username, identifier);
@@ -207,12 +235,12 @@ public class AccountRepository implements IAccountRepository {
     }
 
     private <T extends AccountPO> void applyFilter(LambdaQueryWrapper<T> wrapper,
-                                                   com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> username,
-                                                   com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> nickname,
-                                                   com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> email,
-                                                   com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> phone,
-                                                   com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> status,
-                                                   com.baomidou.mybatisplus.core.toolkit.support.SFunction<T, ?> id,
+                                                   SFunction<T, ?> username,
+                                                   SFunction<T, ?> nickname,
+                                                   SFunction<T, ?> email,
+                                                   SFunction<T, ?> phone,
+                                                   SFunction<T, ?> status,
+                                                   SFunction<T, ?> id,
                                                    String keyword, AccountStatus accountStatus) {
         if (keyword != null) {
             wrapper.and(condition -> condition

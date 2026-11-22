@@ -10,6 +10,8 @@ import io.jiangbyte.github.domain.account.model.valobj.AccountType;
  * 单个应用登录域的 Sa-Token 不透明令牌适配器。
  */
 public class SaTokenAccountSessionAdapter implements IAccountSessionPort {
+    private static final String TOKEN_VERSION_SESSION_KEY = "tokenVersion";
+
     private final AccountType accountType;
     private final StpLogic stpLogic;
 
@@ -25,7 +27,7 @@ public class SaTokenAccountSessionAdapter implements IAccountSessionPort {
         logic.login(accountId);
 
         // 2. 将账户令牌版本保存在当前令牌会话中
-        logic.getTokenSession().set("tokenVersion", tokenVersion);
+        logic.getTokenSession().set(TOKEN_VERSION_SESSION_KEY, tokenVersion);
 
         // 3. 读取令牌原值及绝对/空闲超时时间
         SaTokenInfo info = logic.getTokenInfo();
@@ -44,7 +46,7 @@ public class SaTokenAccountSessionAdapter implements IAccountSessionPort {
 
     @Override
     public int currentTokenVersion(AccountType type) {
-        Object value = logic(type).getTokenSession().get("tokenVersion");
+        Object value = logic(type).getTokenSession().get(TOKEN_VERSION_SESSION_KEY);
         return value instanceof Number number ? number.intValue() : 0;
     }
 

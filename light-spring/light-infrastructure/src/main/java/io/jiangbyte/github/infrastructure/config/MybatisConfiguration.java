@@ -11,7 +11,10 @@ import org.springframework.context.annotation.Configuration;
  * 扫描基础设施模块中的 MyBatis-Plus DAO。
  */
 @Configuration
-@MapperScan("io.jiangbyte.github.infrastructure.account.persistence.dao")
+@MapperScan({
+        "io.jiangbyte.github.infrastructure.account.persistence.dao",
+        "io.jiangbyte.github.infrastructure.content.announcement.persistence.dao"
+})
 public class MybatisConfiguration {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
