@@ -4,12 +4,12 @@ import io.jiangbyte.github.api.admin.account.dto.AdminAccountDTO;
 import io.jiangbyte.github.api.admin.account.management.IAdminAccountService;
 import io.jiangbyte.github.api.admin.account.management.dto.AdminAccountPageRequestDTO;
 import io.jiangbyte.github.api.admin.account.management.dto.CreateAdminAccountRequestDTO;
-import io.jiangbyte.github.api.admin.account.management.dto.DeleteAccountRequestDTO;
 import io.jiangbyte.github.api.admin.account.management.dto.UpdateAdminAccountRequestDTO;
 import io.jiangbyte.github.domain.account.model.valobj.AccountType;
 import io.jiangbyte.github.trigger.admin.account.management.application.AdminAccountManagementService;
 import io.jiangbyte.github.types.response.Response;
 import io.jiangbyte.github.types.page.PageResult;
+import io.jiangbyte.github.types.request.IdsRequestDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +30,10 @@ public class AdminUserController implements IAdminAccountService {
     private final AdminAccountManagementService service;
 
     @Override
-    @GetMapping("/list")
-    public Response<PageResult<AdminAccountDTO>> list(
+    @GetMapping("/page")
+    public Response<PageResult<AdminAccountDTO>> page(
             @Valid @ModelAttribute AdminAccountPageRequestDTO request) {
-        return Response.success(service.toPageDto(service.list(AccountType.ADMIN, request)));
+        return Response.success(service.toPageDto(service.page(AccountType.ADMIN, request)));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class AdminUserController implements IAdminAccountService {
 
     @Override
     @PostMapping("/delete")
-    public Response<Void> delete(@Valid @RequestBody DeleteAccountRequestDTO request) {
+    public Response<Void> delete(@Valid @RequestBody IdsRequestDTO request) {
         service.delete(AccountType.ADMIN, request.getIds());
         return Response.success();
     }

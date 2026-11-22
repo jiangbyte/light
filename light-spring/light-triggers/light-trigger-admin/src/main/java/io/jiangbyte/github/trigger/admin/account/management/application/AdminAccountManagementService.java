@@ -26,13 +26,13 @@ public class AdminAccountManagementService {
     private final AdminAccountMapper accountMapper;
     private final IPasswordTransportCryptoPort passwordCryptoPort;
 
-    public PageResult<AccountEntity> list(AccountType type, AdminAccountPageRequestDTO request) {
+    public PageResult<AccountEntity> page(AccountType type, AdminAccountPageRequestDTO request) {
         // 1. 先校验当前管理员仍有效
         accountDomainService.current(AccountType.ADMIN);
         // 2. 将 API 查询参数对象转换为领域查询对象后执行分页
         AccountPageQuery query = AccountPageQuery.of(request.getPage(), request.getPageSize(),
                 request.getKeyword(), request.getStatus());
-        return accountDomainService.list(type, query);
+        return accountDomainService.page(type, query);
     }
 
     public AccountEntity detail(AccountType type, long id) {

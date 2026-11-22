@@ -98,7 +98,7 @@ public class AccountDomainService {
     /**
      * 分页查询指定账户域，并统一校验分页参数。
      */
-    public PageResult<AccountEntity> list(AccountType type, AccountPageQuery query) {
+    public PageResult<AccountEntity> page(AccountType type, AccountPageQuery query) {
         // 1. 校验账户域和领域查询对象
         requireType(type);
         if (query == null) {

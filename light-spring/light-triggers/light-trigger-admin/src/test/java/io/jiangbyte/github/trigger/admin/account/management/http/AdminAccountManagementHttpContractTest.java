@@ -49,18 +49,18 @@ class AdminAccountManagementHttpContractTest {
     }
 
     @Test
-    void listBindsQueryParametersToRequestObject() throws Exception {
+    void pageBindsQueryParametersToRequestObject() throws Exception {
         AccountEntity account = account();
         AdminAccountDTO dto = new AdminAccountDTO();
         dto.setId(42L);
         PageResult<AccountEntity> entityPage = new PageResult<>(List.of(account), 1, 2, 10);
         PageResult<AdminAccountDTO> dtoPage = new PageResult<>(List.of(dto), 1, 2, 10);
-        when(managementService.list(eq(AccountType.ADMIN), any(AdminAccountPageRequestDTO.class)))
+        when(managementService.page(eq(AccountType.ADMIN), any(AdminAccountPageRequestDTO.class)))
                 .thenReturn(entityPage);
         when(managementService.toPageDto(entityPage)).thenReturn(dtoPage);
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new AdminUserController(managementService)).build();
 
-        mockMvc.perform(get("/api/accounts/admins/list")
+        mockMvc.perform(get("/api/accounts/admins/page")
                         .param("page", "2")
                         .param("page_size", "10")
                         .param("keyword", "admin")
@@ -69,7 +69,7 @@ class AdminAccountManagementHttpContractTest {
 
         ArgumentCaptor<AdminAccountPageRequestDTO> captor =
                 ArgumentCaptor.forClass(AdminAccountPageRequestDTO.class);
-        verify(managementService).list(eq(AccountType.ADMIN), captor.capture());
+        verify(managementService).page(eq(AccountType.ADMIN), captor.capture());
         assertThat(captor.getValue().getPage()).isEqualTo(2);
         assertThat(captor.getValue().getPageSize()).isEqualTo(10);
         assertThat(captor.getValue().getKeyword()).isEqualTo("admin");
@@ -88,6 +88,14 @@ class AdminAccountManagementHttpContractTest {
                 .andExpect(status().isOk());
 
         verify(managementService).delete(AccountType.ADMIN, List.of(2L, 3L));
+    }
+
+    @Test
+    void listIsNotUsedForPagination() throws Exception {
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new AdminUserController(managementService)).build();
+
+        mockMvc.perform(get("/api/accounts/admins/list"))
+                .andExpect(status().isNotFound());
     }
 
     private AccountEntity account() {
