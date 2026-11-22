@@ -7,6 +7,7 @@ import io.jiangbyte.github.domain.account.model.valobj.AccountLoginResult;
 import io.jiangbyte.github.types.page.PageResult;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
 /**
  * Admin 账户领域对象到 API DTO 的编译期映射。
  */
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
+        unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface AdminAccountMapper {
     AdminAccountDTO toDto(AccountEntity account);
 

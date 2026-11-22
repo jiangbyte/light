@@ -6,12 +6,14 @@ import io.jiangbyte.github.domain.account.model.entity.AccountEntity;
 import io.jiangbyte.github.domain.account.model.valobj.AccountLoginResult;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
 /**
  * Portal 账户领域对象到 API DTO 的编译期映射。
  */
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
+        unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface PortalAccountMapper {
     PortalAccountDTO toDto(AccountEntity account);
 
