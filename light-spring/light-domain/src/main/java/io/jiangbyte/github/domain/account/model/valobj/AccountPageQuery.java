@@ -15,7 +15,7 @@ public record AccountPageQuery(int page, int pageSize, String keyword, AccountSt
     public AccountPageQuery {
         if (page < 1 || pageSize < 1 || pageSize > MAX_PAGE_SIZE) {
             throw new BizException(ResponseCode.ILLEGAL_PARAMETER,
-                    "page 必须大于 0，page_size 必须在 1 到 100 之间");
+                    "page 必须大于 0，pageSize 必须在 1 到 100 之间");
         }
         keyword = StrUtil.trimToNull(keyword);
     }

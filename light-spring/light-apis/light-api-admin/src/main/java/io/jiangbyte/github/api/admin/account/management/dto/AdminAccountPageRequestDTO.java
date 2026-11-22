@@ -19,10 +19,4 @@ public class AdminAccountPageRequestDTO {
     private String keyword;
     private String status;
 
-    /**
-     * 兼容 GET 查询参数的 snake_case 命名。
-     */
-    public void setPage_size(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
 }

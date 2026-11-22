@@ -62,7 +62,7 @@ class AdminAccountManagementHttpContractTest {
 
         mockMvc.perform(get("/api/accounts/admins/page")
                         .param("page", "2")
-                        .param("page_size", "10")
+                        .param("pageSize", "10")
                         .param("keyword", "admin")
                         .param("status", "ACTIVE"))
                 .andExpect(status().isOk());
